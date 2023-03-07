@@ -2,8 +2,11 @@
 (:requirements :strips :equality :typing :fluents :durative-actions)
 
 (:types
-  location person robot item door - object
-  granny - person
+  person
+  robot
+  item
+  door
+  gripper
   room corridor door_nearby - location
 )
 
@@ -11,24 +14,21 @@
   (connected ?l1 ?l2 - location)
   (connected_door ?l1 ?l2 - location ?d - door)
   (door_opened ?d - door)
-  
+  (door_closed ?d - door)
+  (door_at ?d - door ?l - location)
   (object_at ?i - item ?r - room)
-
   (robot_at ?b - robot ?l - location)
-  (robot_free ?b - robot)
-  (robot_carry ?b - robot ?i - item)
+  (gripper_at ?g - gripper ?b - robot)
+  (gripper_free ?g - gripper)
+  (robot_carry ?b - robot ?i - item ?g - gripper)
 )
 
 (:action open_door
   :parameters (?b - robot ?d - door ?l - location)
   :precondition
     (and
-      (robot ?b)
-      (door ?d)
-      (location ?l)
-
-      (robot_at ?b ?l)   
-      (not (door_opened ?d))
+      (robot_at ?b ?l) 
+      (door_closed ?d)
     )
   :effect 
     (and
@@ -40,17 +40,13 @@
   :parameters (?b - robot ?l1 ?l2 - location)
   :precondition 
     (and
-      (robot ?b)
-      (location ?l1)
-      (location ?l2)
-
       (robot_at ?b ?l1)
       (connected ?l1 ?l2)
     )
   :effect 
     (and 
-      (robot_at ?r ?l2)
-      (not (robot_at ?r ?l1))
+      (robot_at ?b ?l2)
+      (not (robot_at ?b ?l1))
     )
 ) 
 
@@ -58,11 +54,8 @@
   :parameters (?b - robot ?l1 ?l2 - location ?d - door)
   :precondition
     (and
-      (robot ?b)
-      (door ?d)
-      (location ?l1)
-      (location ?l2)
-
+      (door_at ?d ?l1)
+      (door_at ?d ?l2)
       (connected_door ?l1 ?l2 ?d)
       (robot_at ?b ?l1)
       (door_opened ?d)
@@ -75,42 +68,35 @@
 )
 
 (:action pick_object
-  :parameters (?i - item ?r - room ?b - robot)
+  :parameters (?i - item ?r - room ?b - robot ?g - gripper)
   :precondition 
     (and
-      (robot ?b)
-      (item ?i)
-      (location ?l1)
-      (location ?l2)
-
       (object_at ?i ?r)
       (robot_at ?b ?r)
-      (robot_free ?b)
+      (gripper_at ?g ?b)
+      (gripper_free ?g)
     )
   :effect 
     (and 
-      (robot_carry ?b ?i)
+      (robot_carry ?b ?i ?g)
       (not (object_at ?i ?r))
-      (not (robot_free ?b))
+      (not (gripper_free ?g))
     )
 )
 
 (:action arrange_object
-  :parameters (?i - item ?r - room ?b - robot)
+  :parameters (?i - item ?r - room ?b - robot ?g - gripper)
   :precondition 
     (and 
-      (robot ?b)
-      (item ?i)
-      (room ?r)
-      
+      (gripper_at ?g ?b)
       (robot_at ?b ?r)
-      (robot_carry ?b ?i)
+      (robot_carry ?b ?i ?g)
     )
   :effect 
     (and 
       (object_at ?i ?r)
-      (robot_free ?b)
-      (not (robot_carry ?b ?i))
+      (gripper_free ?g)
+      (not (robot_carry ?b ?i ?g))
     )
 )
 
