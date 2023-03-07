@@ -44,7 +44,7 @@
       (robot_at ?r ?to)
       (not (robot_at ?r ?from))
     )
-)
+) 
 
 (:action cross
   :parameters (?b - robot ?l1 ?l2 - location ?d - door)
@@ -56,8 +56,10 @@
     )
   )
   :effect(
-      (not (robot_at ?b ?l1)
-      (robot_at ?b ?l2)
+      and(
+        (not (robot_at ?b ?l1))
+        (robot_at ?b ?l2)
+    )
   )
 )
 
