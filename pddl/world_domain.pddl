@@ -19,8 +19,6 @@
   (robot_carry ?b - robot ?i - item)
 )
 
-(:constants Table)
-
 (:action open_door
   :parameters (?b - robot ?d - door ?l - location)
   :precondition
@@ -48,38 +46,50 @@
     )
 )
 
+(:action cross
+  :parameters (?b - robot ?l1 ?l2 - location ?d - door)
+  :precondition(
+    (and
+      (connected_door ?l1 ?l2 ?d)
+      (robot_at ?b ?l1)
+      (door_opened ?d)
+    )
+  )
+  :effect(
+      (not (robot_at ?b ?l1)
+      (robot_at ?b ?l2)
+  )
+)
+
 (:action pick_object
-  :parameters (?o - object ?l - location ?r - robot ?g - gripper)
+  :parameters (?i - item ?r - room ?b - robot)
   :precondition 
     (and
-      (gripper_at ?g ?r)
-      (object_at ?o ?l)
-      (robot_at ?r ?l) 
-      (gripper_free ?g)
+      (object_at ?i ?r)
+      (robot_at ?b ?r)
+      (robot_free ?b)
     )
-:effect 
-  (and 
-    (robot_carry ?r ?g ?o) 
-    (not (object_at ?o ?l))
-    (not (gripper_free ?g))
-  )
+  :effect 
+    (and 
+      (robot_carry ?b ?i)
+      (not (object_at ?i ?r))
+      (not (robot_free ?b))
+    )
 )
 
-(:action drop
-:parameters (?o - object ?l - location ?r - robot ?g - gripper)
-:precondition 
-  (and 
-    (gripper_at ?g ?r)
-    (robot_at ?r ?l)
-    (robot_carry ?r ?g ?o)
-  )
-:effect 
-  (and 
-    (object_at ?o ?l)
-    (gripper_free ?g)
-    (not (robot_carry ?r ?g ?o))
-  )
+(:action arrange_object
+  :parameters (?i - item ?r - room ?b - robot)
+  :precondition 
+    (and 
+      (robot_at ?b ?r)
+      (robot_carry ?b ?i)
+    )
+  :effect 
+    (and 
+      (object_at ?i ?r)
+      (robot_free ?b)
+      (not (robot_carry ?b ?i))
+    )
 )
-
 )
 
