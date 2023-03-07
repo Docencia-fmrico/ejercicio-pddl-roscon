@@ -1,5 +1,5 @@
-(define (domain world)
-(:requirements :strips :equality :typing :fluents :durative-actions)
+(define (domain world_domain)
+(:requirements :strips :equality :typing :durative-actions :fluents :duration-inequalities)
 
 (:types
   person
@@ -24,102 +24,109 @@
   (robot_carry ?r - robot ?i - item ?g - gripper)
 )
 
-(:action open_door
+
+(:durative-action open_door
   :parameters (?r - robot ?d - door ?l - location)
-  :precondition
+  :duration (= ?duration 5)
+  :condition
     (and
-      (robot_at ?r ?l) 
-      (door_closed ?d)
+      (at start(robot_at ?r ?l)) 
+      (at start(door_closed ?d))
     )
   :effect 
     (and
-      (door_opened ?d)
-      (not (door_closed ?d))
+      (at start(door_opened ?d))
+      (at start(not(door_closed ?d)))
     )
 )
 
-(:action move_robot
+(:durative-action move_robot
   :parameters (?r - robot ?l1 ?l2 - location)
-  :precondition 
+  :duration (= ?duration 5)
+  :condition 
     (and
-      (robot_at ?r ?l1)
-      (connected ?l1 ?l2)
+      (at start(robot_at ?r ?l1))
+      (at start(connected ?l1 ?l2))
     )
   :effect 
     (and 
-      (robot_at ?r ?l2)
-      (not (robot_at ?r ?l1))
+      (at start(robot_at ?r ?l2))
+      (at start(not (robot_at ?r ?l1)))
     )
 ) 
 
-(:action move_object
+(:durative-action move_object
   :parameters (?r - robot ?l1 ?l2 - location ?i - item ?g - gripper)
-  :precondition 
+  :duration (= ?duration 5)
+  :condition 
     (and
-      (robot_at ?r ?l1)
-      (connected ?l1 ?l2)
-      (gripper_busy ?g)
-      (object_at ?i ?l1)
-      (robot_carry ?r ?i ?g)
+      (at start (robot_at ?r ?l1))
+      (at start (connected ?l1 ?l2))
+      (at start (gripper_busy ?g))
+      (at start (object_at ?i ?l1))
+      (at start (robot_carry ?r ?i ?g))
     )
   :effect 
     (and 
-      (robot_at ?r ?l2)
-      (not (robot_at ?r ?l1))
-      (not (object_at ?i ?l1))
-      (object_at ?i ?l2)
+      (at start(robot_at ?r ?l2))
+      (at start(not (robot_at ?r ?l1)))
+      (at start(not (object_at ?i ?l1)))
+      (at start(object_at ?i ?l2))
     )
 ) 
 
-(:action cross
+(:durative-action cross
   :parameters (?r - robot ?l1 ?l2 - location ?d - door)
-  :precondition
+  :duration (= ?duration 5)
+  :condition
     (and
-      (door_at ?d ?l1)
-      (door_at ?d ?l2)
-      (connected_door ?l1 ?l2 ?d)
-      (robot_at ?r ?l1)
-      (door_opened ?d)
+      (at start(door_at ?d ?l1))
+      (at start(door_at ?d ?l2))
+      (at start(connected_door ?l1 ?l2 ?d))
+      (at start(robot_at ?r ?l1))
+      (at start(door_opened ?d))
     )
   :effect 
     (and
-      (not (robot_at ?r ?l1))
-      (robot_at ?r ?l2)
+      (at start(not (robot_at ?r ?l1)))
+      (at start(robot_at ?r ?l2))
     )
 )
 
-(:action pick_object
+(:durative-action pick_object
   :parameters (?i - item ?l - location ?r - robot ?g - gripper)
-  :precondition 
+  :duration (= ?duration 5)
+  :condition 
     (and
-      (object_at ?i ?l)
-      (robot_at ?r ?l)
-      (gripper_at ?g ?r)
-      (gripper_free ?g)
+      (at start(object_at ?i ?l))
+      (at start(robot_at ?r ?l))
+      (at start(gripper_at ?g ?r))
+      (at start(gripper_free ?g))
     )
   :effect 
     (and 
-      (robot_carry ?r ?i ?g)
-      (not (gripper_free ?g))
-      (gripper_busy ?g)
+      (at start(robot_carry ?r ?i ?g))
+      (at start(not (gripper_free ?g)))
+      (at start(gripper_busy ?g))
     )
 )
 
-(:action arrange_object
+(:durative-action arrange_object
   :parameters (?i - item ?l - location ?r - robot ?g - gripper)
-  :precondition 
+  :duration (= ?duration 5)
+  :condition 
     (and 
-      (gripper_at ?g ?r)
-      (robot_at ?r ?l)
-      (robot_carry ?r ?i ?g)
-      (gripper_busy ?g)
+      (at start(gripper_at ?g ?r))
+      (at start(robot_at ?r ?l))
+      (at start(robot_carry ?r ?i ?g))
+      (at start(gripper_busy ?g))
     )
   :effect 
     (and 
-      (object_at ?i ?l)
-      (gripper_free ?g)
-      (not (robot_carry ?r ?i ?g))
-      (not (gripper_busy ?g))
+      (at start(object_at ?i ?l))
+      (at start(gripper_free ?g))
+      (at start(not (robot_carry ?r ?i ?g)))
+      (at start(not (gripper_busy ?g)))
     )
 )
 
