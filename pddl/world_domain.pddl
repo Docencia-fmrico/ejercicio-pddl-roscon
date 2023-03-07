@@ -21,12 +21,25 @@
 
 (:constants Table)
 
+(:action open_door
+  :parameters (?b - robot ?d - door ?l - location)
+  :precondition
+    (and
+      (robot_at ?b ?l)   
+      (not (door_opened ?d))
+    )
+  :effect 
+    (and
+      (door_opened ?d)
+    )
+)
+
 (:action move_robot
-  :parameters (?r - robot ?from ?to - location ?d - door)
+  :parameters (?b - robot ?from ?to - location)
   :precondition 
     (and 
-      (robot_at ?r ?from)
-      (connected ?from ?to ?d)
+      (robot_at ?b ?from)
+      (connected ?from ?to)
     )
   :effect 
     (and 
@@ -65,46 +78,6 @@
     (object_at ?o ?l)
     (gripper_free ?g)
     (not (robot_carry ?r ?g ?o))
-  )
-)
-
-(:action move_object
-  :parameters (?b ?from ?to)
-  :precondition 
-    (and 
-      (block ?b) 
-      (block ?to) 
-      (clear ?b)
-      (clear ?to)
-      (on ?b ?from)
-      (not (= ?b ?from))
-      (not (= ?b ?to))
-      (not (= ?from ?to))
-    )
-  :effect 
-    (and 
-      (on ?b ?to)
-      (clear ?from)
-      (not (on ?b ?from))
-      (not (clear ?to))
-    )
-)
-
-(:action move_to_table
-  :parameters (?b ?x)
-  :precondition 
-    (and 
-      (block ?b)
-      (block ?x)
-      (on ?b ?x)
-      (clear ?b)
-      (not (= ?b ?x))
-    )
-:effect 
-  (and 
-    (on ?b Table)
-    (clear ?x)
-    (not (on ?b ?x))
   )
 )
 
