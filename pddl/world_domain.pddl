@@ -50,6 +50,25 @@
     )
 ) 
 
+(:action move_object
+  :parameters (?b - robot ?l1 ?l2 - location ?i - item ?g - gripper)
+  :precondition 
+    (and
+      (robot_at ?b ?l1)
+      (connected ?l1 ?l2)
+      (not (gripper_free ?g))
+      (object_at ?i ?l1)
+      (robot_carry ?b ?i ?g)
+    )
+  :effect 
+    (and 
+      (robot_at ?b ?l2)
+      (not (robot_at ?b ?l1))
+      (not (object_at ?i ?l1))
+      (object_at ?i ?l2)
+    )
+) 
+
 (:action cross
   :parameters (?b - robot ?l1 ?l2 - location ?d - door)
   :precondition
@@ -79,7 +98,6 @@
   :effect 
     (and 
       (robot_carry ?b ?i ?g)
-      (not (object_at ?i ?r))
       (not (gripper_free ?g))
     )
 )
