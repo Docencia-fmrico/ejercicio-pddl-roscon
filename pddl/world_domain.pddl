@@ -2,31 +2,21 @@
 (:requirements :strips :equality :typing :fluents :durative-actions)
 
 (:types
-  Towels Plates Tools Clothing Blanket - object
+  location person robot item door - object
   granny - person
-  Bathroom kitchen Garage Bedroom Livingroom - location
-  tiago - robot
-  door
+  room corridor door_nearby - location
 )
+
 (:predicates
-  (on ?x ?y)
-  (clear ?x)
-  (block ?b)
+  (connected ?l1 ?l2 - location)
+  (connected_door ?l1 ?l2 - location ?d - door)
+  (door_opened ?d - door)
+  
+  (object_at ?i - item ?r - room)
 
-  (robot_at ?r - robot ?l - location)
-  (object_at ?b - ball ?l - location)
-  (gripper_free ?g - gripper)
-  (gripper_at ?g - gripper ?r - robot)
-  (robot_carry ?r - robot ?g - gripper ?o - ball)
-  (connected ?l1 ?l2 - location ?d - door)
-
-  (room ?r)
-  (ball ?b)
-  (gripper ?g)
-  (at-robby ?r)
-  (at ?b ?r)
-  (free ?g)
-  (carry ?o ?g)
+  (robot_at ?b - robot ?l - location)
+  (robot_free ?b - robot)
+  (robot_carry ?b - robot ?i - item)
 )
 
 (:constants Table)
