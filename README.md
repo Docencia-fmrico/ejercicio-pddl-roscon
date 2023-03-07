@@ -1,4 +1,4 @@
-# planning-exercise
+# Planning Exercise
 
 En este ejericio se pide un fichero PDDL con el dominio y varios (al menos 3) ficheros con el problema PDDL representativos.
 
@@ -16,3 +16,23 @@ El dominio debe permitir:
   * Traer le medicina del salón.
   
  Al menos, tened en cuenta los ejemplos descritos.
+
+## World
+El mundo de Gazebo elegido es el **hospital**. Para el ejericio se ha seleccionado la siguiente zona:
+![Hospital](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/main/resources/hospital_planning.png)
+| Object | Elements |
+| :---:  | :---: |
+| Robot | Tiago  |
+| Person | Granny |
+| Locations | Bedroom, Bathroom, Surgery Room, UCI, Living Room, Corridor |
+| Doors | 1: bedroom-bathroom, 2: bedroom-corridor, 3: surgery-corridor |
+| Items | Pijama, Towel, Scalpel, Blanket, Magazines  |
+
+## Domain
+
+## Problems
+
+## Execution
+```
+ros2 run popf popf world_domain.pddl housekeeping_problemX.pddl
+```
