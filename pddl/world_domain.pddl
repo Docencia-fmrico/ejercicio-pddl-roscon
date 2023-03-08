@@ -31,6 +31,7 @@
   :condition
     (and
       (at start(robot_at ?r ?l)) 
+      (at start(door_at ?d ?l))
       (at start(door_closed ?d))
     )
   :effect 
