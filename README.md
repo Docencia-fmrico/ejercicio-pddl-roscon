@@ -19,7 +19,7 @@ El dominio debe permitir:
 
 ## World
 El mundo de Gazebo elegido es el **hospital**. Para el ejericio se ha seleccionado la siguiente zona:
-![Hospital](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/main/resources/hospital_planning.png)
+![Hospital](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/main/resources/aws_hospital.jpg)
 | Object | Elements |
 | :---:  | :---: |
 | Robot | Tiago  |
