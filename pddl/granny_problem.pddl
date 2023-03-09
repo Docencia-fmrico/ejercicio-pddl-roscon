@@ -47,24 +47,27 @@
         (door_closed door2)
         (door_closed door3)
 
-        (robot_at tiago living_room)
+        (robot_at tiago uci)
         (gripper_free gripper)
 
         (granny_at bedroom Granny)
 
         (object_at towel living_room)
         (object_at scalpel surgery_room)
-        (object_at magazine living_room)
-        (object_at pijama bedroom)
+        (object_at magazine bathroom)
+        (object_at pijama bathroom)
         (object_at blanket uci)
 
         (arr_obj_req magazine Granny)
+        (no_human_request Granny)
 
         (object_place towel bathroom)
+        (object_place pijama living_room)
+
     )
 
     (:goal
-        (and (object_at towel bathroom) (robot_at tiago surgery_room))
+        (and  (object_at towel bathroom) (robot_at tiago surgery_room))
         ;(no_human_request Granny)
         ;(and (no_human_request Granny) (object_at towel bathroom))
         ;(and (robot_at tiago surgery_room) (object_at towel living_room))
