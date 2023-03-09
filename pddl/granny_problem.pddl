@@ -13,6 +13,7 @@
     )
     
     (:init
+
         (connected_door bathroom_d1 bedroom_d1 door1)
         (connected_door bedroom_d1 bathroom_d1 door1)
         (connected_door bedroom_d2 corridor_d2 door2)
@@ -33,24 +34,20 @@
         (connected surgery_room surgery_room_d3)
         (connected surgery_room_d3 surgery_room)
 
+
+        (connected bedroom_d1 bedroom_d2)
+        (connected bedroom_d2 bedroom_d1)
+        
         (connected uci corridor)
         (connected corridor uci)
         (connected living_room corridor)
         (connected corridor living_room)
-
-        (door_at door1 bathroom_d1)
-        (door_at door1 bedroom_d1)
-        (door_at door2 bedroom_d2)
-        (door_at door2 corridor_d2)
-        (door_at door3 corridor_d3)
-        (door_at door3 surgery_room_d3)
 
         (door_closed door1)
         (door_closed door2)
         (door_closed door3)
 
         (robot_at tiago bedroom)
-        (gripper_at gripper tiago)
         (gripper_free gripper)
 
         (object_at towel bathroom)
@@ -58,9 +55,13 @@
         (object_at magazine living_room)
         (object_at pijama bedroom)
         (object_at blanket uci)
+
+        (object_place towel living_room)
     )
 
     (:goal
         (and (object_at towel living_room) (robot_at tiago surgery_room))
+        ;(object_at towel living_room)
+        ;(and (robot_at tiago surgery_room) (object_at towel living_room))
     )
 )
