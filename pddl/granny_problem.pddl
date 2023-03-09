@@ -27,10 +27,10 @@
         (connected bedroom_d1 bedroom)
         (connected bedroom_d2 bedroom)
         (connected bedroom bedroom_d2)
-        (connected corridor corridor_d2)
-        (connected corridor_d2 corridor)
         (connected corridor_d3 corridor)
         (connected corridor corridor_d3)
+        (connected corridor corridor_d2)
+        (connected corridor_d2 corridor)
         (connected surgery_room surgery_room_d3)
         (connected surgery_room_d3 surgery_room)
 
@@ -47,21 +47,26 @@
         (door_closed door2)
         (door_closed door3)
 
-        (robot_at tiago bedroom)
+        (robot_at tiago living_room)
         (gripper_free gripper)
 
-        (object_at towel bathroom)
+        (granny_at bedroom Granny)
+
+        (object_at towel living_room)
         (object_at scalpel surgery_room)
         (object_at magazine living_room)
         (object_at pijama bedroom)
         (object_at blanket uci)
 
-        (object_place towel living_room)
+        (arr_obj_req magazine Granny)
+
+        (object_place towel bathroom)
     )
 
     (:goal
-        (and (object_at towel living_room) (robot_at tiago surgery_room))
-        ;(object_at towel living_room)
+        (and (object_at towel bathroom) (robot_at tiago surgery_room))
+        ;(no_human_request Granny)
+        ;(and (no_human_request Granny) (object_at towel bathroom))
         ;(and (robot_at tiago surgery_room) (object_at towel living_room))
     )
 )
