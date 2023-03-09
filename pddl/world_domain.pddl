@@ -123,6 +123,7 @@
   :duration (= ?duration 5)
   :condition 
     (and 
+      (over all(no_human_request Granny))
       (at start(object_at ?i On_gripper))
       (over all(robot_at ?r ?l)) ; over all hace lo mismo
       (at start(object_place ?i ?l))
@@ -177,7 +178,8 @@
 (:durative-action give_object
     :parameters (?r - robot ?i - item ?l - location ?g - gripper)
     :duration (= ?duration 5)
-    :condition (and 
+    :condition (and
+        (at start (arr_obj_req ?i Granny))
         (at start(granny_at ?l Granny))
         (at start(object_at ?i On_gripper))
         (over all(robot_at ?r ?l)) ; over all hace lo mismo
