@@ -71,7 +71,7 @@ ros2 run popf popf world_domain.pddl tidy_up_problem.pddl
 
 The execution result should be similar to this:
 
-![Tidy](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/Readme/resources/tidy_exec.jpg)
+![Tidy](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/main/resources/tidy_prob_exec.jpg)
 
 
 
@@ -105,8 +105,8 @@ In this last problem, the main issue was making the robot achieve more than one 
 To execute this problem:
 
 ```
-ros2 run popf popf world_domain.pddl door_problem.pddl
+ros2 run popf popf world_domain.pddl mult_requests_problem.pddl
 ```
 
-![mult_request](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/Readme/resources/mult_prob_exec.jpg)
+![mult_request](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/main/resources/mult_prob_exec.jpg)
 
