@@ -86,7 +86,7 @@ ros2 run popf popf world_domain.pddl granny_problem.pddl
 
 Obtaining as result:
 
-![Granny](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/Readme/resources/granny_prob_exec.jpg)
+![Granny](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/main/resources/granny_prob_exec.jpg)
 
 ### Door Problem
 
