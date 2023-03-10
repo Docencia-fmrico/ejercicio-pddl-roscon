@@ -48,11 +48,12 @@ Granny could request the robot:
 - [ ] request_close_door
 - [ ] request_arrange_obj
 
+## Problems
+
 Conditions to make a new problem.pddl:
 - In order to meet the requests of the granny, we have to specify the aim that there is no-human-request. Since if we do not state it, it will remain indefinitely waiting for the human-requests to be completed and will not find a path solution.
 - On the contrary, if the granny does not make any requests, we have to define in the initial state that there are no-human-request.
 
-## Problems
 ---- ----
 To execute the problems, you must be in the pddl directory:
 ```
