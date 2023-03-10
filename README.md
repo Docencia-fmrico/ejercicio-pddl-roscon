@@ -18,33 +18,79 @@ El dominio debe permitir:
  Al menos, tened en cuenta los ejemplos descritos.
 
 ## World
-The Gazebo world chosen has been the  **hospital**. In order to solve the problem of the project we focus the :
+The Gazebo world chosen has been the  **hospital**. In order to solve it, we focus our attention and the tiago behaviour in this area, represented in the picture:
 ![Hospital](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/main/resources/aws_hospital.jpg)
+
+## Objects
+To do these problems, we need to define all these objects:
+
 | Object | Elements |
 | :---:  | :---: |
 | Robot | Tiago  |
 | Person | Granny |
 | Locations | Bedroom, Bathroom, Surgery Room, UCI, Living Room, Corridor |
+| Locations (Door Locations) | Bedroom_d1, Bathroom_d1, Bathroom_d2, Corridor_d2, Corridor_d3, Surgery_room_d3 |
 | Doors | 1: bedroom-bathroom, 2: bedroom-corridor, 3: surgery-corridor |
 | gripper | gripper |
 | Items | Pijama, Towel, Scalpel, Blanket, Magazines  |
 
 ## Domain
-
+----- EXPLICAR EL DOMINIO
 ## Problems
 ---- ----
-To execute the problems, you should be in the pddl directory:
+To execute the problems, you must be in the pddl directory:
 ```
 cd pddl
 ros2 run popf popf world_domain.pddl problemX.pddl
 ```
 ### Tidy Up Problem
+
+This is a standar problem. The robot must put all the items in their correct place. In this case it is not necessary the preferences, because the Granny doesn't interfere in the Tiago behavior.
+
+You should run it as:
+
+```
+ros2 run popf popf world_domain.pddl tidy_up_problem.pddl
+```
+
+The execution result should be similar to this:
+
+![Tidy](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/Readme/resources/tidy_exec.jpg)
+
+
+
 ### Granny Problem
 This is a basic problem to try the preferences of atending a Granny request before the other actions. The robot should be at the end in the surgery room.
+
+To execute this problem:
+
 ```
 ros2 run popf popf world_domain.pddl granny_problem.pddl
 ```
-## Execution
+
+Obtaining as result:
+
+![Granny](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/Readme/resources/granny_prob_exec.jpg)
+
+### Door Problem
+
+To execute this problem:
+
 ```
-ros2 run popf popf world_domain.pddl housekeeping_problemX.pddl
+ros2 run popf popf world_domain.pddl door_problem.pddl
 ```
+
+![Door](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/Readme/resources/door_prob_exec.jpg)
+
+### Multiple Request Problem
+
+In this last problem, the main issue was making the robot achieve more than one requests from Granny. It musts complete in the most efficient order. The plannifer decides the order.
+
+To execute this problem:
+
+```
+ros2 run popf popf world_domain.pddl door_problem.pddl
+```
+
+![mult_request](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/Readme/resources/mult_prob_exec.jpg)
+
