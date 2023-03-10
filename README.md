@@ -89,16 +89,6 @@ Obtaining as result:
 
 ![Granny](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/main/resources/granny_prob_exec.jpg)
 
-### Door Problem
-
-To execute this problem:
-
-```
-ros2 run popf popf world_domain.pddl door_problem.pddl
-```
-
-![Door](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/Readme/resources/door_prob_exec.jpg)
-
 ### Multiple Request Problem
 
 In this last problem, the main issue was making the robot achieve more than one requests from Granny. It musts complete in the most efficient order. The plannifer decides the order.
@@ -111,3 +101,14 @@ ros2 run popf popf world_domain.pddl mult_requests_problem.pddl
 
 ![mult_request](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/main/resources/mult_prob_exec.jpg)
 
+
+### Door Problem
+The robot will first open de requested door because it has priority.
+After that, the robot will arrange the pijama and it will go to the bathroom.
+To execute this problem:
+
+```
+ros2 run popf popf world_domain.pddl door_problem.pddl
+```
+
+![Door](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/main/resources/door_prob_exec.jpg)
