@@ -19,6 +19,7 @@ El dominio debe permitir:
 
 ## World
 The Gazebo world chosen has been the  **hospital**. In order to solve it, we focus our attention and the tiago behaviour in this area, represented in the picture:
+
 ![Hospital](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/main/resources/aws_hospital.jpg)
 
 ## Objects
@@ -29,13 +30,28 @@ To do these problems, we need to define all these objects:
 | Robot | Tiago  |
 | Person | Granny |
 | Locations | Bedroom, Bathroom, Surgery Room, UCI, Living Room, Corridor |
-| Locations (Door Locations) | Bedroom_d1, Bathroom_d1, Bathroom_d2, Corridor_d2, Corridor_d3, Surgery_room_d3 |
+| Locations (Door Locations) | Bedroom_d1, Bathroom_d1, Bedroom_d2, Corridor_d2, Corridor_d3, Surgery_room_d3 |
 | Doors | 1: bedroom-bathroom, 2: bedroom-corridor, 3: surgery-corridor |
 | gripper | gripper |
 | Items | Pijama, Towel, Scalpel, Blanket, Magazines  |
 
 ## Domain
------ EXPLICAR EL DOMINIO
+This robot is able to do the following actions:
+
+- [ ] Open and close doors.
+- [ ] Cross through a door and move it to another location. It could also move between locations connected without a door.
+- [ ] Pick an object from a room and arrange it to another. To do this, it has a gripper that could only carry one item at a time.
+- [ ] Give object to Granny where it is.
+
+Granny could request the robot:
+- [ ] request_open_door
+- [ ] request_close_door
+- [ ] request_arrange_obj
+
+Conditions to make a new problem.pddl:
+- In order to meet the requests of the granny, we have to specify the aim that there is no-human-request. Since if we do not state it, it will remain indefinitely waiting for the human-requests to be completed and will not find a path solution.
+- On the contrary, if the granny does not make any requests, we have to define in the initial state that there are no-human-request.
+
 ## Problems
 ---- ----
 To execute the problems, you must be in the pddl directory:
