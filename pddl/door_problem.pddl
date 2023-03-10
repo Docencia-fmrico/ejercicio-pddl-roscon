@@ -1,5 +1,3 @@
-; añadir door_at en predicates
-; cuando sepamos como es la casa habra que cambiar algun connect
 (define (problem door_problem)
     (:domain world_domain)
 

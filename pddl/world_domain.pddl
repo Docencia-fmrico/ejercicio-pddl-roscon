@@ -62,11 +62,11 @@
     (and
        ; tiene que ser end para no abrir d3 al ppio
       (at end(door_closed ?d))
-      (at start(not(door_opened ?d))) ; da igual
+      (at start(not(door_opened ?d)))
     )
 )
 
-(:durative-action move_robot ; Without door
+(:durative-action move_robot
   :parameters (?r - robot ?l1 ?l2 - location)
   :duration (= ?duration 5)
   :condition 
@@ -76,12 +76,12 @@
     )
   :effect 
     (and 
-      (at end(robot_at ?r ?l2)) ; no es end
-      (at start(not (robot_at ?r ?l1))); no es end
+      (at end(robot_at ?r ?l2))
+      (at start(not (robot_at ?r ?l1)))
     )
 ) 
 
-(:durative-action cross ; With door
+(:durative-action cross
   :parameters (?r - robot ?l1 ?l2 - location ?d - door)
   :duration (= ?duration 5)
   :condition
