@@ -41,28 +41,27 @@
         (connected corridor living_room)
 
         (door_closed door1)
-        ;(door_opened door1)
         (door_closed door2)
         (door_closed door3)
 
-        (robot_at tiago uci)
+        (robot_at tiago living_room)
         (gripper_free gripper)
 
         (object_at pijama bathroom)
 
         (granny_at bedroom Granny)
-        (open_door_req door1 Granny)
-        ;(close_door_req door1 Granny)
-        ;(no_human_request Granny)
+        (open_door_req door3 Granny)
 
         (object_place pijama bedroom)
 
     )
 
+    ; The open door request will be executed first because it has priority.
+    ; After that, the robot will arrange the pijama and it will go to the bathroom.
     (:goal
         (and  
           (object_at pijama bedroom) 
-          (robot_at tiago surgery_room)
+          (robot_at tiago bathroom)
           (no_human_request Granny)
         )
     )

@@ -45,10 +45,10 @@
         (door_closed door2)
         (door_closed door3)
 
-        (robot_at tiago living_room)
+        (robot_at tiago bedroom)
         (gripper_free gripper)
 
-        (granny_at bedroom Granny)
+        (granny_at living_room Granny)
 
         (object_at towel bathroom)
         (object_at scalpel living_room)
@@ -56,19 +56,21 @@
         (object_at pijama bathroom)
         (object_at blanket bedroom)
 
-        (arr_obj_req magazine Granny)
+        (arr_obj_req blanket Granny)
         (close_door_req door1 Granny)
         
 
         (object_place scalpel surgery_room)
     )
 
-    ; In this problem, multiple Granny requests has been tested. In this case, using the (no_human_request Granny) predicate in the goal doesn't work,
-    ; because when the robot achieve one of the request, the predicate is negated, so the robot won't complete the next requests.
+    ; In this problem, multiple Granny requests have been tested.
+    ; In this case, using the (no_human_request Granny) predicate in the goal doesn't work
+    ; because it won't exist any more after completing the first request, so the following ones won't be completed.
+    
     (:goal
         (and
         (object_at scalpel surgery_room)
-        (object_at_granny magazine)
+        (object_at_granny blanket)
         (door_closed door1)
         )
     )
