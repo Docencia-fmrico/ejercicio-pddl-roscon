@@ -1,6 +1,4 @@
-; añadir door_at en predicates
-; cuando sepamos como es la casa habra que cambiar algun connect
-(define (problem housekeeping_1)
+(define (problem granny_problem)
     (:domain world_domain)
 
     (:objects
@@ -65,11 +63,7 @@
         (object_place pijama living_room)
 
     )
-
     (:goal
         (and  (object_at towel bathroom) (robot_at tiago surgery_room))
-        ;(no_human_request Granny)
-        ;(and (no_human_request Granny) (object_at towel bathroom))
-        ;(and (robot_at tiago surgery_room) (object_at towel living_room))
     )
 )
