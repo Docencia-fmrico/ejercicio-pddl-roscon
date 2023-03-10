@@ -18,7 +18,7 @@ El dominio debe permitir:
  Al menos, tened en cuenta los ejemplos descritos.
 
 ## World
-El mundo de Gazebo elegido es el **hospital**. Para el ejericio se ha seleccionado la siguiente zona:
+The Gazebo world chosen has been the  **hospital**. In order to solve the problem of the project we focus the :
 ![Hospital](https://github.com/Docencia-fmrico/ejercicio-pddl-roscon/blob/main/resources/aws_hospital.jpg)
 | Object | Elements |
 | :---:  | :---: |
@@ -26,12 +26,24 @@ El mundo de Gazebo elegido es el **hospital**. Para el ejericio se ha selecciona
 | Person | Granny |
 | Locations | Bedroom, Bathroom, Surgery Room, UCI, Living Room, Corridor |
 | Doors | 1: bedroom-bathroom, 2: bedroom-corridor, 3: surgery-corridor |
+| gripper | gripper |
 | Items | Pijama, Towel, Scalpel, Blanket, Magazines  |
 
 ## Domain
 
 ## Problems
-
+---- ----
+To execute the problems, you should be in the pddl directory:
+```
+cd pddl
+ros2 run popf popf world_domain.pddl problemX.pddl
+```
+### Tidy Up Problem
+### Granny Problem
+This is a basic problem to try the preferences of atending a Granny request before the other actions. The robot should be at the end in the surgery room.
+```
+ros2 run popf popf world_domain.pddl granny_problem.pddl
+```
 ## Execution
 ```
 ros2 run popf popf world_domain.pddl housekeeping_problemX.pddl
