@@ -1,4 +1,4 @@
-(define (problem granny_problem)
+(define (problem tidy_up_problem)
     (:domain world_domain)
 
     (:objects
@@ -50,25 +50,34 @@
 
         (granny_at bedroom Granny)
 
-        (object_at towel living_room)
-        (object_at scalpel surgery_room)
-        (object_at magazine bathroom)
-        (object_at pijama bathroom)
-        (object_at blanket uci)
+        (object_at towel uci)
+        (object_at scalpel living_room)
+        (object_at magazine bedroom)
+        (object_at pijama surgery_room)
+        (object_at blanket bathroom)
 
-        (arr_obj_req magazine Granny)
+        (no_human_request Granny)
 
         (object_place towel bathroom)
-        (object_place pijama living_room)
+        (object_place pijama bedroom)
+        (object_place magazine living_room)
+        (object_place blanket uci)
+        (object_place scalpel surgery_room)
+
 
     )
-    ; In order to try the preferences of atending Granny requests with more priority than the others.
-    ; At the end, the robot should be at the surgery room.
-    (:goal
-        (and 
-        (no_human_request Granny)
+    
+    ; We want to achieve that the robot tidy up all the objects and put it in their correct place.
+    ; After that, the robot should go to the bedroom.
+    ; In this case, the Granny doesn't interfere in the planification. Granny does no requests.
+
+    (:goal (and  
         (object_at towel bathroom)
-        (robot_at tiago surgery_room)
+        (object_at pijama bedroom)
+        (object_at magazine living_room)
+        (object_at blanket uci)
+        (object_at scalpel surgery_room)
+        (robot_at tiago bedroom)
         )
     )
 )

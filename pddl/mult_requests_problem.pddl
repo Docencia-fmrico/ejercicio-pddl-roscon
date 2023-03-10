@@ -1,4 +1,4 @@
-(define (problem granny_problem)
+(define (problem request_granny_problem)
     (:domain world_domain)
 
     (:objects
@@ -41,34 +41,35 @@
         (connected living_room corridor)
         (connected corridor living_room)
 
-        (door_closed door1)
+        (door_opened door1)
         (door_closed door2)
         (door_closed door3)
 
-        (robot_at tiago uci)
+        (robot_at tiago living_room)
         (gripper_free gripper)
 
         (granny_at bedroom Granny)
 
-        (object_at towel living_room)
-        (object_at scalpel surgery_room)
-        (object_at magazine bathroom)
+        (object_at towel bathroom)
+        (object_at scalpel living_room)
+        (object_at magazine uci)
         (object_at pijama bathroom)
-        (object_at blanket uci)
+        (object_at blanket bedroom)
 
         (arr_obj_req magazine Granny)
+        (close_door_req door1 Granny)
+        
 
-        (object_place towel bathroom)
-        (object_place pijama living_room)
-
+        (object_place scalpel surgery_room)
     )
-    ; In order to try the preferences of atending Granny requests with more priority than the others.
-    ; At the end, the robot should be at the surgery room.
+
+    ; In this problem, multiple Granny requests has been tested. In this case, using the (no_human_request Granny) predicate in the goal doesn't work,
+    ; because when the robot achieve one of the request, the predicate is negated, so the robot won't complete the next requests.
     (:goal
-        (and 
-        (no_human_request Granny)
-        (object_at towel bathroom)
-        (robot_at tiago surgery_room)
+        (and
+        (object_at scalpel surgery_room)
+        (object_at_granny magazine)
+        (door_closed door1)
         )
     )
 )
