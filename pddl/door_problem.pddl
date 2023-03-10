@@ -41,6 +41,7 @@
         (connected corridor living_room)
 
         (door_closed door1)
+        ;(door_opened door1)
         (door_closed door2)
         (door_closed door3)
 
@@ -51,6 +52,7 @@
 
         (granny_at bedroom Granny)
         (open_door_req door1 Granny)
+        ;(close_door_req door1 Granny)
         ;(no_human_request Granny)
 
         (object_place pijama bedroom)
