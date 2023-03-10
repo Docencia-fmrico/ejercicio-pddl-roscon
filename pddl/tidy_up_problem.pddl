@@ -64,10 +64,9 @@
         (object_place blanket uci)
         (object_place scalpel surgery_room)
 
-
     )
     
-    ; We want to achieve that the robot tidy up all the objects and put it in their correct place.
+    ; We want the robot to tidy up all the objects and put them in their correct place.
     ; After that, the robot should go to the bedroom.
     ; In this case, the Granny doesn't interfere in the planification. Granny does no requests.
 

@@ -62,7 +62,7 @@
         (object_place pijama living_room)
 
     )
-    ; In order to try the preferences of atending Granny requests with more priority than the others.
+    ; Proving the Granny requests priority.
     ; At the end, the robot should be at the surgery room.
     (:goal
         (and 

@@ -65,7 +65,7 @@
     )
 )
 
-(:durative-action move_robot
+(:durative-action move_robot ; Locations connected without door
   :parameters (?r - robot ?l1 ?l2 - location)
   :duration (= ?duration 5)
   :condition 
@@ -80,7 +80,7 @@
     )
 ) 
 
-(:durative-action cross
+(:durative-action cross ; Locations connected by door
   :parameters (?r - robot ?l1 ?l2 - location ?d - door)
   :duration (= ?duration 5)
   :condition
@@ -113,7 +113,7 @@
     )
 )
 
-(:durative-action arrange_object
+(:durative-action arrange_object ; Leave object only on its place
   :parameters (?r - robot ?i - item ?l - location ?g - gripper)
   :duration (= ?duration 5)
   :condition 
@@ -131,6 +131,24 @@
     )
 )
 
+(:durative-action give_object ; Leave object on any location
+    :parameters (?r - robot ?i - item ?l - location ?g - gripper)
+    :duration (= ?duration 5)
+    :condition (and
+        (at start (arr_obj_req ?i Granny))
+        (at start(granny_at ?l Granny))
+        (at start(object_at ?i On_gripper))
+        (over all(robot_at ?r ?l))
+    )
+    :effect (and 
+        (at start(not(object_at ?i On_gripper)))
+        (at end(object_at ?i ?l))
+        (at end(gripper_free ?g))
+        (at end(object_at_granny ?i))
+    )
+)
+
+;########## REQUESTS ##########
 (:durative-action request_open_door
     :parameters (?d - door ?p - person)
     :duration (= ?duration 5)
@@ -170,20 +188,4 @@
     )
 )
 
-(:durative-action give_object
-    :parameters (?r - robot ?i - item ?l - location ?g - gripper)
-    :duration (= ?duration 5)
-    :condition (and
-        (at start (arr_obj_req ?i Granny))
-        (at start(granny_at ?l Granny))
-        (at start(object_at ?i On_gripper))
-        (over all(robot_at ?r ?l))
-    )
-    :effect (and 
-        (at start(not(object_at ?i On_gripper)))
-        (at end(object_at ?i ?l))
-        (at end(gripper_free ?g))
-        (at end(object_at_granny ?i))
-    )
-)
 )
